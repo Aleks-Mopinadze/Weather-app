@@ -49,7 +49,7 @@ export function UseGeolocation(){
                     errorMessage = 'Location request timed out'
                     break;
                 default:
-                    errorMessage = 'An unknown error occured'
+                    errorMessage = 'An unknown error occurred'
             }
 
             setLocationData({

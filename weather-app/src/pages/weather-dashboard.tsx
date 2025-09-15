@@ -3,16 +3,23 @@ import {AlertTriangle, MapPin, RefreshCw} from "lucide-react";
 import WeatherSkeleton from "@/components/loading-skeleton.tsx";
 import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert.tsx";
 import {UseGeolocation} from "@/hooks/use-geolocation.ts";
-import {useReverseGeocodeQuery} from "@/hooks/use-weather.ts";
+import {useForecastQuery, useReverseGeocodeQuery, useWeatherQuery} from "@/hooks/use-weather.ts";
 
 const WeatherDashboard = () => {
     const {coordinates, error: locationError, getLocation, isLoading: locationLoading} = UseGeolocation()
 
+    const weatherQuery = useWeatherQuery(coordinates);
+    const forecastQuery = useForecastQuery(coordinates);
     const locationQuery = useReverseGeocodeQuery(coordinates);
-    console.log(locationQuery)
+
 
     const handleRefresh = ()=> {
         getLocation()
+        if(coordinates){
+            weatherQuery.refetch()
+            forecastQuery.refetch()
+            locationQuery.refetch()
+        }
     }
 
     if(locationLoading){
