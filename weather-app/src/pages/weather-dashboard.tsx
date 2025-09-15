@@ -5,6 +5,7 @@ import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert.tsx";
 import {UseGeolocation} from "@/hooks/use-geolocation.ts";
 import {useForecastQuery, useReverseGeocodeQuery, useWeatherQuery} from "@/hooks/use-weather.ts";
 import CurrentWeather from "@/components/current-weather.tsx";
+import HourlyTemperature from "@/components/hourly-temperature.tsx";
 
 const WeatherDashboard = () => {
     const {coordinates, error: locationError, getLocation, isLoading: locationLoading} = UseGeolocation()
@@ -87,10 +88,9 @@ const WeatherDashboard = () => {
             </div>
 
             <div className='grid gap-6'>
-                <div>
+                <div className='flex flex-col lg:flex-row gap-4'>
                     <CurrentWeather data={weatherQuery.data} locationName={locationName} />
-                    current weather
-                    hourly temp
+                    <HourlyTemperature data={forecastQuery.data} />
                 </div>
                 <div>
                     details
