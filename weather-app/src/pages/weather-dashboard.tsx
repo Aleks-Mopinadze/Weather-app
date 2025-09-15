@@ -4,6 +4,7 @@ import WeatherSkeleton from "@/components/loading-skeleton.tsx";
 import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert.tsx";
 import {UseGeolocation} from "@/hooks/use-geolocation.ts";
 import {useForecastQuery, useReverseGeocodeQuery, useWeatherQuery} from "@/hooks/use-weather.ts";
+import CurrentWeather from "@/components/current-weather.tsx";
 
 const WeatherDashboard = () => {
     const {coordinates, error: locationError, getLocation, isLoading: locationLoading} = UseGeolocation()
@@ -53,16 +54,49 @@ const WeatherDashboard = () => {
         </Alert>
     }
 
+    const locationName = locationQuery.data?.[0]
+
+    if(weatherQuery.error || forecastQuery.error){
+        return (
+            <Alert variant='destructive'>
+                <AlertTriangle className='h-4 w-4'/>
+                <AlertTitle>Error</AlertTitle>
+                <AlertDescription className='flex flex-col gap-4' >
+                    <p>{locationError}</p>
+                    <Button onClick={handleRefresh} variant={'outline'} className='w-fit'>
+                        <RefreshCw className='mr-2 h-4 w-4'/>
+                        Retry
+                    </Button>
+                </AlertDescription>
+            </Alert>
+        )
+    }
+
+    if(!weatherQuery.data || !forecastQuery.data){
+        return <WeatherSkeleton/>
+    }
+
     return(
         <div className='space-y-4'>
             {/*{Favorite cities}*/}
             <div className='flex items-center justify-between'>
                 <h1 className='text-xl font-bold tracking-tight'>My Location</h1>
-                <Button variant={"outline"} size={'icon'}  className={'cursor-pointer'} onClick={handleRefresh}>
-                    <RefreshCw className='h-4 w-4' />
+                <Button variant={"outline"} size={'icon'}  className={'cursor-pointer'} onClick={handleRefresh} disabled={weatherQuery.isFetching || forecastQuery.isFetching}>
+                    <RefreshCw className={`h-4 w-4 ${weatherQuery.isFetching ? 'animate-spin' : ''}`} />
                 </Button>
             </div>
 
+            <div className='grid gap-6'>
+                <div>
+                    <CurrentWeather data={weatherQuery.data} locationName={locationName} />
+                    current weather
+                    hourly temp
+                </div>
+                <div>
+                    details
+                    forecastr
+                </div>
+            </div>
 
         </div>
     )
