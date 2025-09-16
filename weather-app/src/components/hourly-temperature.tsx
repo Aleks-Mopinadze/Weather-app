@@ -12,7 +12,7 @@ const HourlyTemperature = ({data}: HourlyTemperatureData)=> {
     const chartData = data.list.slice(0,8).map((item) => ({
         time: format(new Date(item.dt * 1000), 'ha'),
         temp: Math.round(item.main.temp),
-        feels_Like: Math.round(item.main.feels_like)
+        feels_like: Math.round(item.main.feels_like)
     }))
 
     return (
