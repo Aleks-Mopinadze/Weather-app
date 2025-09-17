@@ -83,7 +83,7 @@ const WeatherDashboard = () => {
 
     return(
         <div className='space-y-4'>
-            <FavoriteCities/> Favorite
+            <FavoriteCities/>
             <div className='flex items-center justify-between'>
                 <h1 className='text-xl font-bold tracking-tight'>My Location</h1>
                 <Button variant={"outline"} size={'icon'}  className={'cursor-pointer'} onClick={handleRefresh} disabled={weatherQuery.isFetching || forecastQuery.isFetching}>
