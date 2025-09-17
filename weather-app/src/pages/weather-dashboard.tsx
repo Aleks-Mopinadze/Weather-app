@@ -8,6 +8,7 @@ import CurrentWeather from "@/components/current-weather.tsx";
 import HourlyTemperature from "@/components/hourly-temperature.tsx";
 import WeatherDetails from "@/components/weather-details.tsx";
 import WeatherForecast from "@/components/weather-forecast.tsx";
+import FavoriteCities from "@/components/favorite-cities.tsx";
 
 
 const WeatherDashboard = () => {
@@ -82,7 +83,7 @@ const WeatherDashboard = () => {
 
     return(
         <div className='space-y-4'>
-            {/*{Favorite cities}*/}
+            <FavoriteCities/> Favorite
             <div className='flex items-center justify-between'>
                 <h1 className='text-xl font-bold tracking-tight'>My Location</h1>
                 <Button variant={"outline"} size={'icon'}  className={'cursor-pointer'} onClick={handleRefresh} disabled={weatherQuery.isFetching || forecastQuery.isFetching}>
