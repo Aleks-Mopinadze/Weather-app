@@ -1,6 +1,5 @@
 import type {PropsWithChildren} from "react";
 import Header from "@/components/Header.tsx";
-import {HeartIcon} from "lucide-react";
 
 const Layout = ({children} : PropsWithChildren) => {
     return (
