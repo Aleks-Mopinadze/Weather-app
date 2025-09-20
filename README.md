@@ -22,3 +22,6 @@ A responsive weather forecast app built with React, fetching real-time weather d
 Enter a city name in the search bar or allow location access to see the current weather and forecast.
 
 
+
+<img width="1439" height="778" alt="Screenshot 2025-09-20 at 05 41 51" src="https://github.com/user-attachments/assets/6ec85aa0-d0af-401f-a8e5-ef7d014b3820" />
+
