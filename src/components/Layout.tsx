@@ -10,7 +10,7 @@ const Layout = ({children} : PropsWithChildren) => {
             </main>
             <footer className='border-t border-blur py-12 supports-[backdrop-filter]:bg-background/60'>
                 <div className='container mx-auto px-4 text-center text-gray-400'>
-                    <img src="/logo2.png" alt="logo" className={'h-10 w-10 m-auto'}/>
+                    <img src="public/logo2.png" alt="logo" className={'h-10 w-10 m-auto'}/>
                 </div>
             </footer>
         </div>
